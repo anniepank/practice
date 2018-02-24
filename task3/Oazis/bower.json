@@ -1,0 +1,20 @@
+{
+  "name": "oazis",
+  "homepage": "https://github.com/anniepank/practice",
+  "authors": [
+    "Anna <fpm.pankova@bsu.by>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "fontawesome": "^5.0.6"
+  }
+}

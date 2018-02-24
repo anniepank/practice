@@ -1,0 +1,321 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html,
+body,
+.page {
+    height: 100%; /* needed for proper layout */
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow: hidden;
+    background-color: #eeeeee;
+}
+
+p {
+    margin-bottom: 1em;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+    max-width: 1400px;
+    margin: auto;
+}
+
+.page-header {
+    flex: 0 0 auto;
+    background-color: #4A4D59;
+    font-size: 25px;
+}
+
+#logo {
+    display: flex;
+}
+
+.page-content {
+    flex: 1 1 auto;
+    position: relative;/* need this to position inner content */
+    overflow: auto;
+}
+
+.page-footer {
+    padding: 15px 0 10px 0;
+    flex: 0 0 auto;
+    background-color: #4A4D59;
+    display: flex;
+    flex-flow: column;
+    color: white;
+    text-align: center;
+}
+
+.navigation {
+    margin: 0;
+    background-color: #4A4D59;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navigation .links {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.navigation a {
+    text-decoration: none;
+    display: block;
+    padding: 1em;
+    color: white;
+}
+
+#addNewPost {
+    background-color: #4A4D59;
+    color: white;
+    text-align: center;
+    font-size: 30px;
+    padding-bottom: 30px;
+}
+
+.wrapper {
+    display: flex;
+}
+
+.sidebar {
+    margin-top: 80px;
+    margin-bottom: 100px;
+    padding: 15px;
+    width: 240px;
+    background-color: #4A4D59;
+    flex: 0 0 auto;
+    list-style: false;
+    display: flex;
+    flex-flow: column;
+}
+
+.sidebar-wrapper {
+    margin-top: 30px;
+    background-color: white;
+    flex-grow: 1;
+}
+
+.apply-button {
+    margin-left: 60px;
+    margin-bottom: 10px;
+    background-color: #4A4D59;
+    text-align: center;
+    color: white;
+    size: 16px;
+
+    border-radius: 4px;
+    border: none;
+    padding: 20px;
+    width: 120px;
+    transition: all 0.5s;
+}
+
+.apply-button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.button-two span:after {
+    content: '»';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.button-two:hover span {
+    padding-right: 25px;
+}
+
+.button-two:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+
+input {
+    margin: 20px;
+    width: 200px;
+    display: block;
+    border: none;
+    padding: 10px 0;
+    border-bottom: solid 1px #4A4D59;
+    transition: all 0.3s;
+    background: linear-gradient(to bottom, rgba(255,255,255,255) 96%, #ccc 4%);
+    background-position: -200px 0;
+    background-size: 200px 100%;
+}
+
+.settings-header {
+    size: 14px;
+    color: #4A4D59;
+    margin-left: 20px;
+}
+
+.hashtag {
+    margin: 20px;
+    padding: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 170px;
+    background-color: #4A4D59;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    color: white;
+}
+
+.hashtag-icon {
+    size: 14px;
+}
+
+.menuIcon {
+    display: none;
+}
+
+.icon-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.settings-icon {
+    font-size: 20px;
+    text-align: center;
+}
+
+.post {
+    display: flex;
+    flex-flow: column;
+    width: 300px;
+    height: 400px;
+    margin: 20px;
+}
+
+.post-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.post .post-top {
+    padding: 10px;
+    margin-bottom: 5px;
+    background-color: white;
+}
+
+.post .post-bottom {
+    padding: 10px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+}
+.post .photo {
+    padding: 10px;
+    width: 240px;
+    height: 240px;
+    text-align: center;
+}
+
+.post .post-header {
+    display: flex;
+    justify-content: space-between;
+    height: 30px;
+}
+
+.post .post-description {
+    height: 60px;
+}
+
+.post .date {
+    color: #ccc;
+    size: 8px;
+}
+
+.post .nickname {
+    size: 14px;
+}
+
+.to-the-right {
+    justify-content: flex-end;
+}
+
+.button {
+    height: 50px;
+    width: 200px;
+    background-image: none;
+    border: none;
+    outline: none;
+    background-color: #4A4D59;
+    color: white;
+    text-transform: uppercase;
+    font-size: 20px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+}
+.button::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 160px;
+    height: 40px;
+    background-color: black;
+    z-index: -1;
+    opacity: 0.3;
+    filter: blur(5px);
+    transition: all 0.2s ease-out;
+}
+.button:hover::after {
+    opacity: 0.5;
+    filter: blur(20px);
+    transform: translatey(10px) scalex(1.2);
+}
+.button:active {
+    background-color: #dd4b4b;
+}
+.button:active::after {
+    opacity: 0.3;
+}
+
+@media all and (max-width: 600px) {
+    .navigation {
+        flex-flow: column wrap;
+        padding: 0;
+    }
+
+    .navigation .links {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .navigation a {
+        text-align: center;
+        padding: 10px;
+        border-top: 1px solid rgba(255,255,255,0.3);
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .navigation li:last-of-type a {
+        border-bottom: none;
+    }
+
+    .wrapper aside {
+        display: none;
+    }
+
+    .menuIcon {
+        display: flex;
+    }
+}
+
