@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="styles.css" rel="stylesheet">
+    <link href="post.css" rel="stylesheet">
+    <link href="bower_components/bower-pt-sans/styles/pt_sans.css" rel="stylesheet">
+    <script defer src="bower_components/fontawesome/svg-with-js/js/fontawesome-all.min.js"></script>
+    <title>Title</title>
+</head>
+<body>
+<div class="page">
+    <header class="page-header">
+        <div class="navigation">
+            <div id="logo">
+                <div class="menuIcon"><i class="fas fa-bars"></i></div>
+                <a href="#">OAZIS</a>
+            </div>
+
+            <div class="links">
+                <button class="button button-white">Add new post</button>
+                <div><a href="#">Anna Pankova</a></div>
+                <div><a href="#">Log out</a></div>
+            </div>
+
+        </div>
+    </header>
+
+    <div class="wrapper">
+
+        <aside class="sidebar">
+            <div class="icon-wrapper">
+                <i class="fas fa-cog settings-icon"></i>
+            </div>
+            <div class="sidebar-wrapper">
+                <input placeholder="nickname" type="text" required="">
+                <h3 class="settings-header">Date from</h3>
+                <input type='date' name='birthday' placeholder='Birth date'/>
+                <h3 class="settings-header">Date to</h3>
+                <input type='date' name='birthday' placeholder='Birth date'/>
+
+                <div class="input-hashtag">
+                    <input list="hashtags" type='text' name='hashtag' placeholder='# hashtag'/>
+                    <datalist id="hashtags">
+                        <option value="#animal"></option>
+                        <option value="#building"></option>
+                        <option value="#selfie"></option>
+                        <option value="#dog"></option>
+                        <option value="#kitchen"></option>
+                        <option value="#doggy"></option>
+                    </datalist>
+                </div>
+
+
+                <div class="hashtag-list">
+                    <div class="hashtag">
+                        <span>hashtag</span>
+                        <div class="hashtag-icon">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+                    <div class="hashtag">
+                        <span>hashtag</span>
+                        <div class="hashtag-icon">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+                    <div class="hashtag">
+                        <span>hashtag</span>
+                        <div class="hashtag-icon">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="apply-button"><span>Hover Me</span></button>
+            </div>
+        </aside>
+
+        <main class="page-content">
+
+            <div class="post-list">
+
+                <div class="post">
+                    <div class="post-top">
+                        <div class="post-header">
+                            <div class="post-info">
+                                <div class="nickname">@anniepank</div>
+                                <div class="date">02/24/2018</div>
+                            </div>
+                            <div class="to-the-right">
+                                <button class="post-button">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                                <button class="post-button">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <img class="photo" src="https://placeimg.com/300/300/animals"/>
+                    </div>
+
+                    <div class="post-bottom">
+                        <div>
+                            <div class="post-description">
+                                Description
+                            </div>
+                            <div class="post-hashtags">
+                                #hashtag #hashtag #hashtag #hashtag #hashtag
+                            </div>
+                        </div>
+                        <div class="to-the-right">
+                            <button class="post-button">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-top">
+                        <div class="post-header">
+                            <div class="post-info">
+                                <div class="nickname">@anniepank</div>
+                                <div class="date">02/24/2018</div>
+                            </div>
+                            <div class="to-the-right">
+                                <button class="post-button">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                                <button class="post-button">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <img class="photo" src="https://placeimg.com/300/300/animals"/>
+                    </div>
+
+                    <div class="post-bottom">
+                        <div>
+                            <div class="post-description">
+                                Description
+                            </div>
+                            <div class="post-hashtags">
+                                #hashtag #hashtag #hashtag #hashtag #hashtag
+                            </div>
+                        </div>
+                        <div class="to-the-right">
+                            <button class="post-button">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-top">
+                        <div class="post-header">
+                            <div class="post-info">
+                                <div class="nickname">@anniepank</div>
+                                <div class="date">02/24/2018</div>
+                            </div>
+                            <div class="to-the-right">
+                                <button class="post-button">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                                <button class="post-button">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <img class="photo" src="https://placeimg.com/300/300/animals"/>
+                    </div>
+
+                    <div class="post-bottom">
+                        <div>
+                            <div class="post-description">
+                                Description
+                            </div>
+                            <div class="post-hashtags">
+                                #hashtag #hashtag #hashtag #hashtag #hashtag
+                            </div>
+                        </div>
+                        <div class="to-the-right">
+                            <button class="post-button">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-top">
+                        <div class="post-header">
+                            <div class="post-info">
+                                <div class="nickname">@anniepank</div>
+                                <div class="date">02/24/2018</div>
+                            </div>
+                            <div class="to-the-right">
+                                <button class="post-button">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                                <button class="post-button">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <img class="photo" src="https://placeimg.com/300/300/animals"/>
+                    </div>
+
+                    <div class="post-bottom">
+                        <div>
+                            <div class="post-description">
+                                Description
+                            </div>
+                            <div class="post-hashtags">
+                                #hashtag #hashtag #hashtag #hashtag #hashtag
+                            </div>
+                        </div>
+                        <div class="to-the-right">
+                            <button class="post-button">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-top">
+                        <div class="post-header">
+                            <div class="post-info">
+                                <div class="nickname">@anniepank</div>
+                                <div class="date">02/24/2018</div>
+                            </div>
+                            <div class="to-the-right">
+                                <button class="post-button">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                                <button class="post-button">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <img class="photo" src="https://placeimg.com/300/300/animals"/>
+                    </div>
+
+                    <div class="post-bottom">
+                        <div>
+                            <div class="post-description">
+                                Description
+                            </div>
+                            <div class="post-hashtags">
+                                #hashtag #hashtag #hashtag #hashtag #hashtag
+                            </div>
+                        </div>
+                        <div class="to-the-right">
+                            <button class="post-button">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-top">
+                        <div class="post-header">
+                            <div class="post-info">
+                                <div class="nickname">@anniepank</div>
+                                <div class="date">02/24/2018</div>
+                            </div>
+                            <div class="to-the-right">
+                                <button class="post-button">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                                <button class="post-button">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <img class="photo" src="https://placeimg.com/300/300/animals"/>
+                    </div>
+
+                    <div class="post-bottom">
+                        <div>
+                            <div class="post-description">
+                                Description
+                            </div>
+                            <div class="post-hashtags">
+                                #hashtag #hashtag #hashtag #hashtag #hashtag
+                            </div>
+                        </div>
+                        <div class="to-the-right">
+                            <button class="post-button">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-top">
+                        <div class="post-header">
+                            <div class="post-info">
+                                <div class="nickname">@anniepank</div>
+                                <div class="date">02/24/2018</div>
+                            </div>
+                            <div class="to-the-right">
+                                <button class="post-button">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                                <button class="post-button">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <img class="photo" src="https://placeimg.com/300/300/animals"/>
+                    </div>
+
+                    <div class="post-bottom">
+                        <div>
+                            <div class="post-description">
+                                Description
+                            </div>
+                            <div class="post-hashtags">
+                                #hashtag #hashtag #hashtag #hashtag #hashtag
+                            </div>
+                        </div>
+                        <div class="to-the-right">
+                            <button class="post-button">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-top">
+                        <div class="post-header">
+                            <div class="post-info">
+                                <div class="nickname">@anniepank</div>
+                                <div class="date">02/24/2018</div>
+                            </div>
+                            <div class="to-the-right">
+                                <button class="post-button">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                                <button class="post-button">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <img class="photo" src="https://placeimg.com/300/300/animals"/>
+                    </div>
+
+                    <div class="post-bottom">
+                        <div>
+                            <div class="post-description">
+                                Description
+                            </div>
+                            <div class="post-hashtags">
+                                #hashtag #hashtag #hashtag #hashtag #hashtag
+                            </div>
+                        </div>
+                        <div class="to-the-right">
+                            <button class="post-button">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-top">
+                        <div class="post-header">
+                            <div class="post-info">
+                                <div class="nickname">@anniepank</div>
+                                <div class="date">02/24/2018</div>
+                            </div>
+                            <div class="to-the-right">
+                                <button class="post-button">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                                <button class="post-button">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <img class="photo" src="https://placeimg.com/300/300/animals"/>
+                    </div>
+
+                    <div class="post-bottom">
+                        <div>
+                            <div class="post-description">
+                                Description
+                            </div>
+                            <div class="post-hashtags">
+                                #hashtag #hashtag #hashtag #hashtag #hashtag
+                            </div>
+                        </div>
+                        <div class="to-the-right">
+                            <button class="post-button">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-top">
+                        <div class="post-header">
+                            <div class="post-info">
+                                <div class="nickname">@anniepank</div>
+                                <div class="date">02/24/2018</div>
+                            </div>
+                            <div class="to-the-right">
+                                <button class="post-button">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                                <button class="post-button">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <img class="photo" src="https://placeimg.com/300/300/animals"/>
+                    </div>
+
+                    <div class="post-bottom">
+                        <div>
+                            <div class="post-description">
+                                Description
+                            </div>
+                            <div class="post-hashtags">
+                                #hashtag #hashtag #hashtag #hashtag #hashtag
+                            </div>
+                        </div>
+                        <div class="to-the-right">
+                            <button class="post-button">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-top">
+                        <div class="post-header">
+                            <div class="post-info">
+                                <div class="nickname">@anniepank</div>
+                                <div class="date">02/24/2018</div>
+                            </div>
+                            <div class="to-the-right">
+                                <button class="post-button">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                                <button class="post-button">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <img class="photo" src="https://placeimg.com/300/300/animals"/>
+                    </div>
+
+                    <div class="post-bottom">
+                        <div>
+                            <div class="post-description">
+                                Description
+                            </div>
+                            <div class="post-hashtags">
+                                #hashtag #hashtag #hashtag #hashtag #hashtag
+                            </div>
+                        </div>
+                        <div class="to-the-right">
+                            <button class="post-button">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+            </div>
+            <button class="button">Load</button>
+        </main>
+    </div>
+    <footer class="page-footer">
+        <div>Oazis</div>
+        <div class="footer-info"></div>
+        <p>Made with Love</p>
+        <div class="heart-icon">
+            <i class="fas fa-heart"></i>
+        </div>
+
+
+    </footer>
+</div>
+</body>
+</html>
