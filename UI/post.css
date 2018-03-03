@@ -1,0 +1,65 @@
+
+.post {
+    width: 300px;
+    margin: 20px;
+}
+
+.post-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.post .post-top {
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-flow: column;
+    background-color: white;
+}
+
+.post .post-bottom {
+    margin-top: 10px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+    padding: 10px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+}
+.post .photo {
+    text-align: center;
+}
+
+.post .post-header {
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+}
+
+.post .post-description {
+    color: #888;
+    font-size: 12px;
+}
+
+.post .date {
+    color: #999;
+    font-size: 12px;
+}
+
+.post .nickname {
+    font-size: 16px;
+}
+
+.post svg {
+    color: #555;
+}
+
+.post .post-button {
+    margin: 0;
+    border: none;
+    background: transparent;
+    padding: 8px;
+}
+
+.post .post-button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
