@@ -5,15 +5,18 @@
             description: 'lol',
             createdAt: new Date('2018-02-23'),
             author: 'Misha',
-            photoLink: 'https://placeimg.com/300/300/animals'
+            photoLink: 'https://placeimg.com/300/300/animals',
+            hashtags: 'some hashtags',
+            deleted: false,
         },
-
+/*
         {
             id: '2',
             description: 'kek',
             createdAt: new Date('2018-02-20'),
             author: 'Ivan',
-            photoLink: 'https://placeimg.com/300/300/animals'
+            photoLink: 'https://placeimg.com/300/300/animals/1?',
+            hashtags: 'some hashtags',
         },
 
         {
@@ -21,16 +24,48 @@
             description: 'cat',
             createdAt: new Date('2018-02-28'),
             author: 'Ivan',
-            photoLink: 'https://placeimg.com/300/300/animals'
+            photoLink: 'https://placeimg.com/300/300/animals/2?',
+            hashtags: 'some hashtags',
         },
-
         {
             id: '4',
             description: 'dog',
             createdAt: new Date('2018-02-24'),
             author: 'Ivan',
-            photoLink: 'https://placeimg.com/300/300/animals'
-        }
+            photoLink: 'https://placeimg.com/300/300/animals/3?',
+            hashtags: 'some hashtags',
+
+        },
+        {
+            id: '5',
+            description: 'dog',
+            createdAt: new Date('2018-02-24'),
+            author: 'Ivan',
+            photoLink: 'https://placeimg.com/300/300/animals/3?',
+            hashtags: 'some hashtags',
+
+        },
+        {
+            id: '6',
+            description: 'dog',
+            createdAt: new Date('2018-02-24'),
+            author: 'Ivan',
+            photoLink: 'https://placeimg.com/300/300/animals/3?',
+            hashtags: 'some hashtags',
+
+        },
+
+        {
+            id: '7',
+            description: 'dog',
+            createdAt: new Date('2018-02-24'),
+            author: 'Ivan',
+            photoLink: 'https://placeimg.com/300/300/animals/3?',
+            hashtags: 'some hashtags',
+
+        },
+
+        */
     ]
 
     class Oazis {
@@ -91,6 +126,9 @@
                 if (filterConfig.author) {
                     results = results.filter(x => x.author === filterConfig.author)
                 }
+                if (filterConfig.date) {
+                    results = results.filter(x => x.date === filterConfig.date)
+                }
             }
             if (offset) {
                 results = results.slice(offset)
@@ -110,6 +148,8 @@
         }
 
         addPost(post) {
+            post.id = "id"
+            post.deleted = false
             try {
                 this.validatePost(post)
 
@@ -118,6 +158,8 @@
             }
 
             this.posts.push(post)
+
+            return post
         }
 
         editPost(id, changes) {
