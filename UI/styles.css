@@ -9,7 +9,7 @@ html {
 body {
     padding: 0;
     margin: 0;
-    font-family: "PT Sans", sans-serif;
+    font-family: "PT Sansx  ", sans-serif;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -22,6 +22,7 @@ body {
     display: flex;
     flex-direction: column;
     max-width: 1400px;
+    min-width: 1000px;
     margin: auto;
 }
 
@@ -201,28 +202,11 @@ input {
     color: black;
     background-color: #b8bcca;
 }
+
+#templatePost {
+    display: none;
+}
 @media (max-width: 600px) {
-    .navigation {
-        flex-flow: column wrap;
-        padding: 0;
-    }
-
-    .navigation .links {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .navigation a {
-        text-align: center;
-        padding: 10px;
-        border-top: 1px solid rgba(255,255,255,0.3);
-        border-bottom: 1px solid rgba(0,0,0,0.1);
-    }
-
-    .navigation li:last-of-type a {
-        border-bottom: none;
-    }
-
     .wrapper aside {
         display: none;
     }
@@ -231,8 +215,13 @@ input {
         display: flex;
     }
 }
-
-@media all and (max-height: 800px) {
+@media (max-width: 1000px) {
+    .page {
+        width: 100%;
+        min-width: 0;
+    }
+}
+    @media all and (max-height: 800px) {
     .sidebar {
         margin: 0;
     }

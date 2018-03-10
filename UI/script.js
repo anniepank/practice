@@ -1,40 +1,47 @@
 (function () {
     let posts = [
+
         {
             id: '1',
             description: 'lol',
             createdAt: new Date('2018-02-23'),
             author: 'Misha',
             photoLink: 'https://placeimg.com/300/300/animals',
-            hashtags: 'some hashtags',
+            hashtags: ['#some',  '#hashtags'],
             deleted: false,
+            likes: 4
         },
-/*
+
         {
             id: '2',
             description: 'kek',
-            createdAt: new Date('2018-02-20'),
-            author: 'Ivan',
+            createdAt: new Date('2018-01-28'),
+            author: 'anniepank',
             photoLink: 'https://placeimg.com/300/300/animals/1?',
-            hashtags: 'some hashtags',
+            hashtags: ['#some',  '#hashtags'],
+            deleted: false,
+            likes: 5,
         },
 
         {
             id: '3',
             description: 'cat',
             createdAt: new Date('2018-02-28'),
-            author: 'Ivan',
+            author: 'anniepank',
             photoLink: 'https://placeimg.com/300/300/animals/2?',
-            hashtags: 'some hashtags',
+            hashtags: ['#some #hashtags'],
+            deleted: false,
+            likes: 0,
         },
+
         {
             id: '4',
             description: 'dog',
             createdAt: new Date('2018-02-24'),
             author: 'Ivan',
             photoLink: 'https://placeimg.com/300/300/animals/3?',
-            hashtags: 'some hashtags',
-
+            hashtags: ['#doggy',  '#kitten'],
+            deleted: true,
         },
         {
             id: '5',
@@ -42,8 +49,8 @@
             createdAt: new Date('2018-02-24'),
             author: 'Ivan',
             photoLink: 'https://placeimg.com/300/300/animals/3?',
-            hashtags: 'some hashtags',
-
+            hashtags: ['#esthetic',  '#art'],
+            deleted: false
         },
         {
             id: '6',
@@ -51,21 +58,22 @@
             createdAt: new Date('2018-02-24'),
             author: 'Ivan',
             photoLink: 'https://placeimg.com/300/300/animals/3?',
-            hashtags: 'some hashtags',
-
+            hashtags: ['#classic',  '#beauty'],
+            deleted: false,
+            likes: 20
         },
 
         {
             id: '7',
             description: 'dog',
             createdAt: new Date('2018-02-24'),
-            author: 'Ivan',
+            author: 'Petya',
             photoLink: 'https://placeimg.com/300/300/animals/3?',
-            hashtags: 'some hashtags',
-
+            hashtags: ['#gothic',  '#nature'],
+            deleted: true,
+            likes: 30
         },
 
-        */
     ]
 
     class Oazis {
@@ -122,18 +130,20 @@
         getPosts(offset, limit, filterConfig) {
             let results = this.posts.filter(x => !x.deleted)
 
+            results.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
+
             if (filterConfig) {
                 if (filterConfig.author) {
                     results = results.filter(x => x.author === filterConfig.author)
                 }
                 if (filterConfig.date) {
-                    results = results.filter(x => x.date === filterConfig.date)
+                    results = results.filter(x => x.createdAt.getTime() === filterConfig.date.getTime())
                 }
             }
             if (offset) {
                 results = results.slice(offset)
             }
-            if (limit) {
+            if (limit !== undefined) {
                 results = results.slice(0, limit)
             }
             return results
@@ -150,24 +160,39 @@
         addPost(post) {
             post.id = "id"
             post.deleted = false
-            try {
-                this.validatePost(post)
-
-            } catch (error) {
-                return false
-            }
-
+            this.validatePost(post)
             this.posts.push(post)
 
             return post
         }
 
         editPost(id, changes) {
+            if (!this.getPostById(id)) return;
             return Object.assign(this.getPostById(id), changes)
         }
 
         removePost(id) {
             this.getPostById(id).deleted = true
+        }
+
+        getAuthors() {
+            let authors = new Set()
+            for (let post of posts) {
+                authors.add(post.author)
+            }
+
+            return authors
+        }
+
+        getHashtags() {
+            let hashtags = new Set()
+            for (let post of posts) {
+                for (let i = 0; i < post.hashtags.length; i++) {
+                    hashtags.add(post.hashtags[i])
+                }
+            }
+
+            return hashtags
         }
     }
 
