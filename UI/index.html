@@ -8,91 +8,89 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
     <script defer src="script.js"></script>
     <script defer src="test.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-pt-sans@0.0.54/index.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Poiret+One|Source+Sans+Pro:300,400,700&amp;subset=cyrillic" rel="stylesheet">
     <title>Title</title>
 </head>
 <body>
 <div class="page">
-    <header class="page-header">
-        <div class="navigation">
-            <div id="logo">
-                <div class="menuIcon"><i class="fas fa-bars"></i></div>
-                <a href="#">OAZIS</a>
-            </div>
 
-            <div class="links">
-                <button class="button button-white">Add new post +</button>
-                <div><a href="#" id="user"></a></div>
-                <div><a href="#" id="logoutButton">Log out</a></div>
-                <div><a href="#" id="loginButton">Log in</a></div>
-            </div>
-
-        </div>
-    </header>
-
-    <div class="wrapper">
-
-        <aside class="sidebar">
-            <div class="icon-wrapper">
-                <i class="fas fa-cog settings-icon"></i>
-            </div>
-            <div class="sidebar-wrapper">
-                <input list="authors" placeholder="nickname" type="text" required="">
-                <datalist id="authors"></datalist>
-
-                <h3 class="settings-header">Date from</h3>
-                <input type='date' name='birthday' placeholder='Birth date'/>
-
-                <h3 class="settings-header">Date to</h3>
-                <input type='date' name='birthday' placeholder='Birth date'/>
-
-                <div class="input-hashtag">
-                    <input list="hashtags" type='text' name='hashtag' placeholder='# hashtag'/>
-                    <datalist id="hashtags"></datalist>
+    <aside class="sidebar">
+        <header class="page-header">
+            <div class="navigation">
+                <div id="logo">
+                    <a href="#">oazis</a>
                 </div>
 
-
-                <div class="hashtag-list">
-                    <div class="hashtag">
-                        <span>hashtag</span>
-                        <div class="hashtag-icon">
-                            <i class="fas fa-times"></i>
-                        </div>
-                    </div>
-                    <div class="hashtag">
-                        <span>hashtag</span>
-                        <div class="hashtag-icon">
-                            <i class="fas fa-times"></i>
-                        </div>
-                    </div>
-                    <div class="hashtag">
-                        <span>hashtag</span>
-                        <div class="hashtag-icon">
-                            <i class="fas fa-times"></i>
-                        </div>
-                    </div>
+                <div class="links">
+                    <div><a href="#" id="user"></a></div>
+                    <div><a href="#" id="logoutButton">Log out</a></div>
+                    <div><a href="#" id="loginButton">Log in</a></div>
                 </div>
 
-                <button class="apply-button"><span>Hover Me</span></button>
-
             </div>
-        </aside>
 
-        <main class="page-content">
-            <div class="post-list">
+            <button>+</button>
 
+        </header>
+
+        <div class="sidebar-wrapper">
+            <input list="authors" placeholder="nickname" type="text" required="">
+            <datalist id="authors"></datalist>
+
+            <label for="dateFrom" class="settings-header">Date from</label>
+            <input id="dateFrom" type='date' />
+
+            <label for="dateTo" class="settings-header">Date to</label>
+            <input id="dateTo" type='date'/>
+
+            <div class="input-hashtag">
+                <input list="hashtags" type='text' name='hashtag' placeholder='# hashtag'/>
+                <datalist id="hashtags"></datalist>
             </div>
-            <button class="button">Load</button>
-        </main>
-    </div>
-    <footer class="page-footer">
-        <div>Oazis</div>
-        <div class="footer-info"></div>
-        <p>Made with Love</p>
-        <div class="heart-icon">
-            <i class="fas fa-heart"></i>
+
+
+            <div class="hashtag-list">
+                <div class="hashtag">
+                    <span>hashtag</span>
+                    <div class="hashtag-icon">
+                        <i class="fas fa-times"></i>
+                    </div>
+                </div>
+                <div class="hashtag">
+                    <span>hashtag</span>
+                    <div class="hashtag-icon">
+                        <i class="fas fa-times"></i>
+                    </div>
+                </div>
+                <div class="hashtag">
+                    <span>hashtag</span>
+                    <div class="hashtag-icon">
+                        <i class="fas fa-times"></i>
+                    </div>
+                </div>
+            </div>
+
+            <button class="filter-button"><span>Apply</span></button>
+
         </div>
-    </footer>
+
+        <footer class="page-footer">
+            <div>Oazis</div>
+            <div class="footer-info"></div>
+            <p>Made with Love</p>
+            <div class="heart-icon">
+                <i class="fas fa-heart"></i>
+            </div>
+        </footer>
+    </aside>
+
+    <main class="page-content">
+        <div class="post-list">
+
+        </div>
+        <button id="loadMore" class="button">Load</button>
+    </main>
+
 </div>
 
 <article id="templatePost" class="post">

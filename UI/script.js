@@ -6,6 +6,79 @@
             description: 'lol',
             createdAt: new Date('2018-02-23'),
             author: 'Misha',
+            photoLink: 'http://placeimg.com/300/300/animals',
+            hashtags: ['#some',  '#hashtags'],
+            deleted: false,
+            likes: 4
+        },
+
+        {
+            id: '2',
+            description: 'kek',
+            createdAt: new Date('2018-01-28'),
+            author: 'anniepank',
+            photoLink: 'https://placeimg.com/300/300/animals/1?',
+            hashtags: ['#some',  '#hashtags'],
+            deleted: false,
+            likes: 5,
+        },
+
+        {
+            id: '3',
+            description: 'cat',
+            createdAt: new Date('2018-02-28'),
+            author: 'anniepank',
+            photoLink: 'https://placeimg.com/300/300/animals/2?',
+            hashtags: ['#some #hashtags'],
+            deleted: false,
+            likes: 0,
+        },
+
+        {
+            id: '4',
+            description: 'dog',
+            createdAt: new Date('2018-02-24'),
+            author: 'Ivan',
+            photoLink: 'https://placeimg.com/300/300/animals/3?',
+            hashtags: ['#doggy',  '#kitten'],
+            deleted: true,
+        },
+        {
+            id: '5',
+            description: 'dog',
+            createdAt: new Date('2018-02-24'),
+            author: 'Ivan',
+            photoLink: 'https://placeimg.com/300/300/animals/3?',
+            hashtags: ['#esthetic',  '#art'],
+            deleted: false
+        },
+        {
+            id: '6',
+            description: 'dog',
+            createdAt: new Date('2018-02-24'),
+            author: 'Ivan',
+            photoLink: 'https://placeimg.com/300/300/animals/3?',
+            hashtags: ['#classic',  '#beauty'],
+            deleted: false,
+            likes: 20
+        },
+
+        {
+            id: '7',
+            description: 'dog',
+            createdAt: new Date('2018-02-24'),
+            author: 'Petya',
+            photoLink: 'https://placeimg.com/300/300/animals/3?',
+            hashtags: ['#gothic',  '#nature'],
+            deleted: true,
+            likes: 30
+        },
+
+        {
+            id: '1',
+            description: 'lol',
+            createdAt: new Date('2018-02-23'),
+            author: 'Misha',
             photoLink: 'https://placeimg.com/300/300/animals',
             hashtags: ['#some',  '#hashtags'],
             deleted: false,

@@ -68,30 +68,8 @@ window.client = (function () {
         update()
     }
 
-    loadMore(1)
+    loadMore(20)
     update()
-
-/*
-
-    let post = Oazis.addPost(
-        {
-            id: '20',
-            description: 'food',
-            createdAt: new Date('2018-02-28'),
-            author: 'nikita',
-            photoLink: 'https://placeimg.com/300/300/food/3?',
-            hashtags: ['#cook'],
-        })
-
-    postElement = createPostElement(postList, post)
-
-    removePost(post['id'], postList)
-
-    editPost('1', {
-        description: 'real adequate description',
-        author: 'Anna Pankova',
-    })
-    */
 
     let userField = document.getElementById("user")
     userField.innerText = user
