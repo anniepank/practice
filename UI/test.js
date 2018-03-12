@@ -23,6 +23,9 @@ window.client = (function () {
             postElement.querySelector('.to-the-right').querySelector('.fa-pencil-alt').style.display = 'none'
         }
 
+        if (postConfig.likes)
+        postElement.querySelector('#likes').innerText = postConfig.likes
+
         postList.appendChild(postElement)
 
         return postElement
