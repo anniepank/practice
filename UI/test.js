@@ -1,10 +1,7 @@
 window.client = (function () {
-    let user = 'Anna Pankova'
+    let user = 'anniepank'
     let isLoggedIn = false
-    let filters = {
-        author: 'anniepank',
-        date: new Date('2018-02-28'),
-    }
+    let filters = {}
     let posts = []
     let postList = document.getElementsByClassName('post-list')[0]
 
@@ -20,6 +17,11 @@ window.client = (function () {
 
         postElement.querySelector('.post-description').innerText = postConfig['description']
         postElement.querySelector('.post-hashtags').innerText = postConfig['hashtags']
+
+        if ((user === null) || (postConfig.author !== user)) {
+            postElement.querySelector('.to-the-right').querySelector('.fa-trash').style.display = 'none'
+            postElement.querySelector('.to-the-right').querySelector('.fa-pencil-alt').style.display = 'none'
+        }
 
         postList.appendChild(postElement)
 
@@ -51,9 +53,15 @@ window.client = (function () {
 
     }
 
-    function loadMore(numberOfPosts) {
-        let additionalPosts = Oazis.getPosts(posts.length, numberOfPosts);
+    function loadMore(numberOfPosts, filters) {
+        let additionalPosts = Oazis.getPosts(posts.length, numberOfPosts, filters);
         posts = posts.concat(additionalPosts)
+        update()
+    }
+
+    function filterPosts(filterConfig) {
+        let limit = posts.length
+        posts = Oazis.getPosts(0, limit, filterConfig)
         update()
     }
 
@@ -68,15 +76,12 @@ window.client = (function () {
         update()
     }
 
-    loadMore(20)
-    update()
-
     let userField = document.getElementById("user")
     userField.innerText = user
 
     function logIn() {
         isLoggedIn = true
-        user = "Anna Pankova"
+        user = "anniepank"
 
         let logoutButton = document.getElementById('logoutButton')
         let loginButton = document.getElementById('loginButton')
@@ -126,7 +131,9 @@ window.client = (function () {
         removePost,
         editPost,
         addPost,
-        reload
+        reload,
+        update,
+        filterPosts
     }
 
 })();

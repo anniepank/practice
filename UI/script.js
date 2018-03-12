@@ -41,7 +41,7 @@
             author: 'Ivan',
             photoLink: 'https://placeimg.com/300/300/animals/3?',
             hashtags: ['#doggy',  '#kitten'],
-            deleted: true,
+            deleted: false,
         },
         {
             id: '5',
@@ -70,7 +70,7 @@
             author: 'Petya',
             photoLink: 'https://placeimg.com/300/300/animals/3?',
             hashtags: ['#gothic',  '#nature'],
-            deleted: true,
+            deleted: false,
             likes: 30
         },
 
@@ -114,7 +114,7 @@
             author: 'Ivan',
             photoLink: 'https://placeimg.com/300/300/animals/3?',
             hashtags: ['#doggy',  '#kitten'],
-            deleted: true,
+            deleted: false,
         },
         {
             id: '5',
@@ -143,7 +143,7 @@
             author: 'Petya',
             photoLink: 'https://placeimg.com/300/300/animals/3?',
             hashtags: ['#gothic',  '#nature'],
-            deleted: true,
+            deleted: false,
             likes: 30
         },
 
@@ -211,6 +211,16 @@
                 }
                 if (filterConfig.date) {
                     results = results.filter(x => x.createdAt.getTime() === filterConfig.date.getTime())
+                }
+                if (filterConfig.hashtags) {
+                    for (let hashtag of filterConfig.hashtags) {
+                        results = results.filter(x => {
+                            for (let h of x.hashtags) {
+                                if (h === hashtag) return true;
+                            }
+                            return false;
+                        })
+                    }
                 }
             }
             if (offset) {
