@@ -90,16 +90,34 @@ window.client = (function () {
         let loginButton = document.getElementById('loginButton')
         logoutButton.style.display = 'block'
         loginButton.style.display = 'none'
+
+
+        let userName = document.getElementById('user')
+        userName.style.display = 'block'
+
+
+        let addPostButton = document.getElementById('addPostButton')
+        addPostButton.style.display = 'block'
+
+        update()
     }
 
     function logOut() {
         isLoggedIn = false
         user = null
 
-        let logoutButton = document.getElementById('logoutButton')
+        let logoutButton = document.getElementById('logoutButton');
         let loginButton = document.getElementById('loginButton')
         logoutButton.style.display = 'none'
         loginButton.style.display = 'block'
+
+        let userName = document.getElementById('user')
+        userName.style.display = 'none'
+
+        let addPostButton = document.getElementById('addPostButton')
+        addPostButton.style.display = 'none'
+
+        update()
     }
 
     function hints() {
