@@ -23,8 +23,14 @@ window.client = (function () {
             postElement.querySelector('.to-the-right').querySelector('.fa-pencil-alt').style.display = 'none'
         }
 
-        if (postConfig.likes)
-        postElement.querySelector('#likes').innerText = postConfig.likes
+        let likeElement = postElement.querySelector('#likes')
+        if (postConfig.likes) {
+            if (postConfig.likes.length === 0) {
+                likeElement.innerText = 0
+            } else {
+                likeElement.innerText = postConfig.likes.length
+            }
+        }
 
         postList.appendChild(postElement)
 
@@ -120,6 +126,28 @@ window.client = (function () {
         update()
     }
 
+    function likePost(postId) {
+        if (!isLoggedIn) return;
+        let post = Oazis.getPostById(postId)
+
+        let hasMyLike = false;
+
+        if (post.likes) {
+            for (let item of post.likes) {
+                if (item.nickname === user) {
+                    hasMyLike = true;
+                    break;
+                }
+            }
+            if (!hasMyLike) {
+                post.likes.push({nickname: user})
+            }
+        }
+
+        update()
+
+    }
+
     function hints() {
         let authorsElement = document.getElementById('authors')
         let authors = Oazis.getAuthors()
@@ -154,7 +182,8 @@ window.client = (function () {
         addPost,
         reload,
         update,
-        filterPosts
+        filterPosts,
+        likePost
     }
 
 })();
