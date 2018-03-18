@@ -4,12 +4,12 @@
         {
             id: '1',
             description: 'lol',
-            createdAt: new Date('2018-02-23'),
+            createdAt: new Date('2018-03-12'),
             author: 'Misha',
             photoLink: 'http://placeimg.com/300/300/animals',
             hashtags: ['#some',  '#hashtags'],
             deleted: false,
-            likes: 4
+            likes: [ {nickname: 'Ivan'}],
         },
 
         {
@@ -20,7 +20,7 @@
             photoLink: 'https://placeimg.com/300/300/animals/1?',
             hashtags: ['#some',  '#hashtags'],
             deleted: false,
-            likes: 5,
+            likes: [{nickname: 'anniepank'}, {nickname: 'Ivan'}]
         },
 
         {
@@ -31,8 +31,9 @@
             photoLink: 'https://placeimg.com/300/300/animals/2?',
             hashtags: ['#some #hashtags'],
             deleted: false,
-            likes: 0,
+            likes: [{nickname: 'anniepank'}, {nickname: 'Ivan'}]
         },
+
 
         {
             id: '4',
@@ -42,6 +43,7 @@
             photoLink: 'https://placeimg.com/300/300/animals/3?',
             hashtags: ['#doggy',  '#kitten'],
             deleted: false,
+            likes: [{nickname: 'anniepank'}, {nickname: 'Ivan'}, {nickname: ''}]
         },
         {
             id: '5',
@@ -60,7 +62,7 @@
             photoLink: 'https://placeimg.com/300/300/animals/3?',
             hashtags: ['#classic',  '#beauty'],
             deleted: false,
-            likes: 20
+            likes: [{nickname: 'anniepank'}, {nickname: 'Ivan'}, {nickname: 'nikita'}]
         },
 
         {
@@ -71,44 +73,44 @@
             photoLink: 'https://placeimg.com/300/300/animals/3?',
             hashtags: ['#gothic',  '#nature'],
             deleted: false,
-            likes: 30
         },
 
         {
-            id: '1',
+            id: '8',
             description: 'lol',
             createdAt: new Date('2018-02-23'),
             author: 'Misha',
             photoLink: 'https://placeimg.com/300/300/animals',
             hashtags: ['#some',  '#hashtags'],
             deleted: false,
-            likes: 4
+            likes: [{nickname: 'anniepank'}, {nickname: 'Ivan'}]
         },
 
         {
-            id: '2',
+            id: '9',
             description: 'kek',
             createdAt: new Date('2018-01-28'),
             author: 'anniepank',
             photoLink: 'https://placeimg.com/300/300/animals/1?',
             hashtags: ['#some',  '#hashtags'],
             deleted: false,
-            likes: 5,
+            likes: [{nickname: 'anniepank'}]
         },
 
         {
-            id: '3',
+            id: '10',
             description: 'cat',
             createdAt: new Date('2018-02-28'),
             author: 'anniepank',
             photoLink: 'https://placeimg.com/300/300/animals/2?',
             hashtags: ['#some #hashtags'],
             deleted: false,
-            likes: 0,
+            likes: [{nickname: 'anniepank'}]
+
         },
 
         {
-            id: '4',
+            id: '11',
             description: 'dog',
             createdAt: new Date('2018-02-24'),
             author: 'Ivan',
@@ -117,7 +119,7 @@
             deleted: false,
         },
         {
-            id: '5',
+            id: '12',
             description: 'dog',
             createdAt: new Date('2018-02-24'),
             author: 'Ivan',
@@ -126,25 +128,25 @@
             deleted: false
         },
         {
-            id: '6',
+            id: '13',
             description: 'dog',
             createdAt: new Date('2018-02-24'),
             author: 'Ivan',
             photoLink: 'https://placeimg.com/300/300/animals/3?',
             hashtags: ['#classic',  '#beauty'],
             deleted: false,
-            likes: 20
+            likes: [{nickname: 'Misha'}]
         },
 
         {
-            id: '7',
+            id: '14',
             description: 'dog',
             createdAt: new Date('2018-02-24'),
             author: 'Petya',
             photoLink: 'https://placeimg.com/300/300/animals/3?',
             hashtags: ['#gothic',  '#nature'],
             deleted: false,
-            likes: 30
+            likes: []
         },
 
     ]

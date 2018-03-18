@@ -212,6 +212,11 @@ input {
 #templatePost {
     display: none;
 }
+
+#likes {
+    display: inline-block;
+}
+
 @media (max-width: 600px) {
     body {
         overflow: visible;
