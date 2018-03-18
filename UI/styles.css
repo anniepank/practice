@@ -209,7 +209,7 @@ input {
 }
 
 
-#templatePost {
+#postTemplate, #mainPageTemplate {
     display: none;
 }
 

@@ -6,14 +6,18 @@
     <link href="styles.css" rel="stylesheet">
     <link href="post.css" rel="stylesheet">
     <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    <script defer src="components/post.js"></script>
+    <script defer src="components/mainPage.js"></script>
     <script defer src="script.js"></script>
-    <script defer src="test.js"></script>
+    <script defer src="router.js"></script>
+    <script defer src="app.js"></script>
     <script defer src="client-testing.js"></script>
+
     <link href="https://fonts.googleapis.com/css?family=Poiret+One|Source+Sans+Pro:300,400,700&amp;subset=cyrillic" rel="stylesheet">
     <title>Title</title>
 </head>
 <body>
-<div class="page">
+<div class="page" id="mainPageTemplate">
 
     <aside class="sidebar">
         <header class="page-header">
@@ -94,7 +98,7 @@
 
 </div>
 
-<article id="templatePost" class="post">
+<article id="postTemplate" class="post">
     <div class="post-top">
         <div class="post-header">
             <div class="post-info">
