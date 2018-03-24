@@ -35,6 +35,10 @@
     justify-content: space-between;
 }
 
+.post-header svg:hover {
+    color: black;
+}
+
 .post .post-description {
     color: #888;
     font-size: 12px;
@@ -50,6 +54,7 @@
 }
 
 .post svg {
+    font-size: 20px;
     color: #555;
 }
 
@@ -58,8 +63,14 @@
     border: none;
     background: transparent;
     padding: 8px;
+    color: red;
 }
 
-.post .post-button:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+.fa-heart:hover {
+    color: red;
+}
+
+.post .likes-wrapper {
+    display: flex;
+    align-items: center;
 }

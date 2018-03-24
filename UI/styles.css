@@ -74,11 +74,8 @@ body {
     margin: 0;
 }
 
-.navigation .links {
-}
 
-
-.navigation a {
+.page-header a {
     text-decoration: none;
     display: block;
     color: black;

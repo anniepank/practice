@@ -1,3 +1,31 @@
+function likePost(postId) {
+    if (!app.user) return;
+    let post = Oazis.getPostById(postId)
+
+    let hasMyLike = false;
+
+    if (post.likes) {
+        for (let item of post.likes) {
+            if (item.nickname === app.user) {
+                hasMyLike = true;
+                break;
+            }
+        }
+        if (!hasMyLike) {
+            post.likes.push({nickname: app.user})
+            return true;
+        }
+        return false;
+    }
+    Object.assign(post, {likes: [{nickname: app.user}]} )
+    return true;
+}
+
+
+function removePost(post) {
+    Oazis.removePost(post.id)
+}
+
 window.postComponent = function (postConfig) {
     if (postConfig.deleted) return;
 
@@ -16,6 +44,15 @@ window.postComponent = function (postConfig) {
         postElement.querySelector('.to-the-right').querySelector('.fa-pencil-alt').style.display = 'none'
     }
 
+
+    if (postConfig.likes && app.user) {
+        for (let item of postConfig.likes) {
+            if (item.nickname === app.user) {
+                postElement.querySelector('.fa-heart').style.color = 'red'
+            }
+        }
+    }
+
     let likeElement = postElement.querySelector('#likes')
     if (postConfig.likes) {
         if (postConfig.likes.length === 0) {
@@ -25,10 +62,22 @@ window.postComponent = function (postConfig) {
         }
     }
 
-    likeElement.addEventListener('click', () => {
-        if (app.isLoggedIn) {
-
+    postElement.querySelector('.fa-heart').addEventListener('click', () => {
+        if (app.user) {
+            if (likePost(postConfig.id)) {
+                let likes = likeElement.innerText
+                likes++
+                likeElement.innerText = likes
+                postElement.querySelector('.fa-heart').style.color = 'red'
+            }
         }
+    })
+
+    postElement.querySelector('.fa-trash').addEventListener('click', () => {
+        //TODO if not logged in?
+        removePost(postConfig)
+        postElement.onDeleted(postConfig)
+
     })
     return postElement
 }

@@ -1,24 +1,25 @@
 class App {
     constructor() {
-        this.user = 'anniepank'
+        this.user = window.localStorage.login
         this.isLoggedIn = false
     }
 
     init () {
         router.add('^$', () => mainPageComponent())
         router.add('login', () => loginPageComponent())
+        router.add('newPost', () => newPostComponent())
         router.navigate()
-        router.check()
+        router.render('')
         router.listen()
     }
 
     logIn(nickname) {
-        if (!this.isLoggedIn) {
+        if (!this.user) {
             let user = Oazis.getUsers().find(x => x === nickname)
             if (user) {
                 this.isLoggedIn = true
                 this.user = nickname
-
+                window.localStorage.login = user
                 return true;
             }
             return false;
@@ -28,9 +29,10 @@ class App {
 
 
     logOut() {
-        if (this.isLoggedIn) {
+        if (this.user) {
             this.isLoggedIn = false
             this.user = null
+            window.localStorage.login = ''
         }
     }
 }

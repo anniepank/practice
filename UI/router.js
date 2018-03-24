@@ -25,8 +25,7 @@
         }
         */
 
-        check() {
-            let fragment = this.getFragment()
+        render(fragment) {
             for (let i = 0; i < this.routes.length; i++) {
                 let match = fragment.match(this.routes[i].regexp)
                 if (match) {
@@ -43,15 +42,14 @@
         }
 
         listen() {
-            window.addEventListener('hashchange', () => {
-                this.check()
+            window.addEventListener('hashchange', (event) => {
+                this.render(new URL(event.newURL).hash)
             })
         }
 
         navigate(path) {
             path = path ? path : ''
-            window.location.href = window.location.href.replace(/#(.*)$/, '') + '#' + path
-            this.route = window.location.href
+            window.location.hash = path
         }
     }
 

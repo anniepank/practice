@@ -6,7 +6,7 @@
             description: 'lol',
             createdAt: new Date('2018-03-12'),
             author: 'Misha',
-            photoLink: 'http://placeimg.com/300/300/animals',
+            photoLink: 'http://placeimg.com/300/300/animals/?2',
             hashtags: ['#some',  '#hashtags'],
             deleted: false,
             likes: [ {nickname: 'Ivan'}],
@@ -17,7 +17,7 @@
             description: 'kek',
             createdAt: new Date('2018-01-28'),
             author: 'anniepank',
-            photoLink: 'https://placeimg.com/300/300/animals/1?',
+            photoLink: 'https://placeimg.com/300/300/animals/?1',
             hashtags: ['#some',  '#hashtags'],
             deleted: false,
             likes: [{nickname: 'anniepank'}, {nickname: 'Ivan'}]
@@ -28,7 +28,7 @@
             description: 'cat',
             createdAt: new Date('2018-02-28'),
             author: 'anniepank',
-            photoLink: 'https://placeimg.com/300/300/animals/2?',
+            photoLink: 'https://placeimg.com/300/300/animals/?2',
             hashtags: ['#some #hashtags'],
             deleted: false,
             likes: [{nickname: 'anniepank'}, {nickname: 'Ivan'}]
@@ -221,8 +221,11 @@
                 if (filterConfig.author) {
                     results = results.filter(x => x.author === filterConfig.author)
                 }
-                if (filterConfig.date) {
-                    results = results.filter(x => x.createdAt.getTime() === filterConfig.date.getTime())
+                if (filterConfig.dateFrom) {
+                    results = results.filter(x => x.createdAt.getTime() >= filterConfig.dateFrom.getTime())
+                }
+                if (filterConfig.dateTo) {
+                    results = results.filter(x => x.createdAt.getTime() < filterConfig.dateTo.getTime())
                 }
                 if (filterConfig.hashtags) {
                     for (let hashtag of filterConfig.hashtags) {

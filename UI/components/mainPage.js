@@ -5,7 +5,9 @@ window.mainPageComponent = function () {
     element.id = null
 
     let filters = {
-        hashtags: []
+        hashtags: [],
+        dateFrom: null,
+        dateTo: null
     }
     let posts = []
     let limit = 9
@@ -31,10 +33,16 @@ window.mainPageComponent = function () {
         }
 
         for (let post of posts) {
-            postList.appendChild(postComponent(post))
+            let postElement = postComponent(post)
+            postElement.onDeleted = () => {
+                postList.removeChild(postElement)
+                posts = posts.filter(x => x !== post)
+                loadMore(1)
+            }
+            postList.appendChild(postElement)
         }
 
-        if (app.isLoggedIn) {
+        if (app.user) {
             let logoutButton = element.querySelector('#logoutButton')
             let loginButton = element.querySelector('#loginButton')
             logoutButton.style.display = 'block'
@@ -75,12 +83,6 @@ window.mainPageComponent = function () {
         update()
     }
 
-    function removePost(post) {
-        Oazis.removePost(post.id)
-        posts = posts.filter(x => x !== post)
-        reload()
-    }
-
     function editPost(post, changes) {
         Oazis.editPost(post.id, changes)
         update()
@@ -88,30 +90,6 @@ window.mainPageComponent = function () {
 
     let userField = element.querySelector("#user")
     userField.innerText = app.user
-
-
-
-    function likePost(postId) {
-        if (!app.isLoggedIn) return;
-        let post = Oazis.getPostById(postId)
-
-        let hasMyLike = false;
-
-        if (post.likes) {
-            for (let item of post.likes) {
-                if (item.nickname === app.user) {
-                    hasMyLike = true;
-                    break;
-                }
-            }
-            if (!hasMyLike) {
-                post.likes.push({nickname: app.user})
-            }
-        }
-
-        update()
-
-    }
 
     function hints() {
         let authorsElement = element.querySelector('#authors')
@@ -170,17 +148,25 @@ window.mainPageComponent = function () {
         }
     })
 
+    element.querySelector('#dateFrom').addEventListener('change', () => {
+        let value = new Date(element.querySelector('#dateFrom').value)
+        filters.dateFrom = value
+        filterPosts(filters)
+    })
+
+    element.querySelector('#dateTo').addEventListener('change', () => {
+        let value = new Date(element.querySelector('#dateTo').value)
+        filters.dateTo = value
+        filterPosts(filters)
+    })
+
     element.querySelector('#logoutButton').addEventListener('click', () => {
         app.logOut()
         update()
     })
 
-    element.querySelector('#loginButton').addEventListener('click', () => {
-        // TODO: why this doesn't work
-        // router.navigate('login')
-        window.location.href = window.location.href.replace(/#(.*)$/, '') + '#' + 'login'
-        router.check()
-        location.href = window.location.href.replace(/#(.*)$/, '') + '#' + 'login'
+    element.querySelector('#addPostButton').addEventListener('click', () => {
+
     })
 
     Object.assign(element, {
