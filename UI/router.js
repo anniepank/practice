@@ -3,6 +3,7 @@
         constructor() {
             this.currentComponent = null
             this.routes = []
+            this.route = ''
         }
 
         getFragment() {
@@ -16,11 +17,13 @@
             this.routes.push({regexp, handler})
             return this
         }
+        /*
 
         remove(param) {
             this.routes = this.routes.filter(r => r.handler !== param && r.regexp.toString() !== param.toString())
             return this
         }
+        */
 
         check() {
             let fragment = this.getFragment()
@@ -48,7 +51,7 @@
         navigate(path) {
             path = path ? path : ''
             window.location.href = window.location.href.replace(/#(.*)$/, '') + '#' + path
-            return this
+            this.route = window.location.href
         }
     }
 

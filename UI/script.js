@@ -151,6 +151,15 @@
 
     ]
 
+    let users = [
+        'anniepank',
+        'batsila',
+        'valera',
+        'misha',
+        'nikita',
+        'natasha'
+    ]
+
     class Oazis {
 
         constructor(posts) {
@@ -172,6 +181,7 @@
                     photoLink: 1
                 }
             }
+            this.users = users
         }
 
         validateObject(schema, object) {
@@ -280,6 +290,10 @@
             }
 
             return hashtags
+        }
+
+        getUsers() {
+            return this.users;
         }
     }
 

@@ -1,9 +1,14 @@
+const mainPageTemplate = document.querySelector('#mainPageTemplate')
+document.body.removeChild(mainPageTemplate)
 window.mainPageComponent = function () {
-    let element = document.querySelector('#mainPageTemplate').cloneNode(true)
+    let element = mainPageTemplate.cloneNode(true)
     element.id = null
 
-    let filters = {}
+    let filters = {
+        hashtags: []
+    }
     let posts = []
+    let limit = 9
     let postList = element.querySelector('.post-list')
 
     function addPost(post) {
@@ -29,16 +34,43 @@ window.mainPageComponent = function () {
             postList.appendChild(postComponent(post))
         }
 
+        if (app.isLoggedIn) {
+            let logoutButton = element.querySelector('#logoutButton')
+            let loginButton = element.querySelector('#loginButton')
+            logoutButton.style.display = 'block'
+            loginButton.style.display = 'none'
+
+
+            let userName = element.querySelector('#user')
+            userName.style.display = 'block'
+
+
+            let addPostButton = element.querySelector('#addPostButton')
+            addPostButton.style.display = 'block'
+        } else {
+            let logoutButton = element.querySelector('#logoutButton');
+            let loginButton = element.querySelector('#loginButton')
+            logoutButton.style.display = 'none'
+            loginButton.style.display = 'block'
+
+            let userName = element.querySelector('#user')
+            userName.style.display = 'none'
+
+            let addPostButton = element.querySelector('#addPostButton')
+            addPostButton.style.display = 'none'
+        }
+
     }
 
     function loadMore(numberOfPosts, filters) {
+        //TODO check this
+        limit = numberOfPosts
         let additionalPosts = Oazis.getPosts(posts.length, numberOfPosts, filters);
         posts = posts.concat(additionalPosts)
         update()
     }
 
     function filterPosts(filterConfig) {
-        let limit = posts.length
         posts = Oazis.getPosts(0, limit, filterConfig)
         update()
     }
@@ -57,44 +89,7 @@ window.mainPageComponent = function () {
     let userField = element.querySelector("#user")
     userField.innerText = app.user
 
-    function logIn() {
-        app.logIn()
 
-        let logoutButton = element.querySelector('#logoutButton')
-        let loginButton = element.querySelector('#loginButton')
-        logoutButton.style.display = 'block'
-        loginButton.style.display = 'none'
-
-
-        let userName = element.querySelector('#user')
-        userName.style.display = 'block'
-
-
-        let addPostButton = element.querySelector('#addPostButton')
-        addPostButton.style.display = 'block'
-
-        update()
-    }
-
-
-    function logOut() {
-        if (app.isLoggedIn) {
-            app.logOut()
-
-            let logoutButton = element.querySelector('#logoutButton');
-            let loginButton = element.querySelector('#loginButton')
-            logoutButton.style.display = 'none'
-            loginButton.style.display = 'block'
-
-            let userName = element.querySelector('#user')
-            userName.style.display = 'none'
-
-            let addPostButton = element.querySelector('#addPostButton')
-            addPostButton.style.display = 'none'
-
-            update()
-        }
-    }
 
     function likePost(postId) {
         if (!app.isLoggedIn) return;
@@ -124,7 +119,8 @@ window.mainPageComponent = function () {
 
         for (let author of authors) {
             let option = document.createElement('option')
-            option.value = author
+            //option.value = author
+            option.innerText = author
             authorsElement.appendChild(option)
         }
 
@@ -134,13 +130,13 @@ window.mainPageComponent = function () {
         for (let hashtag of hashtags) {
             let option = document.createElement('option')
             option.value = hashtag
+            option.innerText = hashtag
             hashtagsElement.appendChild(option)
         }
 
     }
 
     hints()
-    logIn()
     loadMore(9)
 
     element.querySelector('#loadMore').addEventListener('click', () => {
@@ -157,20 +153,38 @@ window.mainPageComponent = function () {
 
     element.querySelector('#hashtagInput').addEventListener('change', () => {
         let value = element.querySelector('#hashtagInput').value
-        if (value !== "") {
-            filters.hashtags.push()
+        if (value !== '') {
+            filters.hashtags.push(value)
+            element.querySelector('#hashtagInput').value = ''
+            let hashtagElement = document.querySelector('.hashtag').cloneNode(true)
+            let hashtagList = element.querySelector('.hashtag-list')
+            hashtagElement.querySelector('span').innerText = value
+            hashtagElement.style.display = 'flex'
+            hashtagElement.querySelector('.hashtag-icon').addEventListener('click', () => {
+                filters.hashtags = filters.hashtags.filter(x => x !== value)
+                hashtagList.removeChild(hashtagElement)
+                filterPosts(filters)
+            })
+            hashtagList.appendChild(hashtagElement)
             filterPosts(filters)
         }
     })
 
     element.querySelector('#logoutButton').addEventListener('click', () => {
-        logOut();
+        app.logOut()
+        update()
+    })
+
+    element.querySelector('#loginButton').addEventListener('click', () => {
+        // TODO: why this doesn't work
+        // router.navigate('login')
+        window.location.href = window.location.href.replace(/#(.*)$/, '') + '#' + 'login'
+        router.check()
+        location.href = window.location.href.replace(/#(.*)$/, '') + '#' + 'login'
     })
 
     Object.assign(element, {
         posts: () => posts,
-        logIn,
-        logOut,
         loadMore,
         removePost,
         editPost,

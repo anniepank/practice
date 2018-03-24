@@ -5,17 +5,25 @@ class App {
     }
 
     init () {
-        router.add('', () => mainPageComponent())
+        router.add('^$', () => mainPageComponent())
+        router.add('login', () => loginPageComponent())
         router.navigate()
         router.check()
-
+        router.listen()
     }
 
-    logIn() {
+    logIn(nickname) {
         if (!this.isLoggedIn) {
-            this.isLoggedIn = true
-            this.user = 'anniepank'
+            let user = Oazis.getUsers().find(x => x === nickname)
+            if (user) {
+                this.isLoggedIn = true
+                this.user = nickname
+
+                return true;
+            }
+            return false;
         }
+        return false;
     }
 
 

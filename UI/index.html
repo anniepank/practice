@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="styles.css" rel="stylesheet">
     <link href="post.css" rel="stylesheet">
+    <link href="components/login.css" rel="stylesheet">
     <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
     <script defer src="components/post.js"></script>
     <script defer src="components/mainPage.js"></script>
+    <script defer src="components/login.js"></script>
     <script defer src="script.js"></script>
     <script defer src="router.js"></script>
     <script defer src="app.js"></script>
@@ -55,24 +57,7 @@
 
 
             <div class="hashtag-list">
-                <div class="hashtag">
-                    <span>hashtag</span>
-                    <div class="hashtag-icon">
-                        <i class="fas fa-times"></i>
-                    </div>
-                </div>
-                <div class="hashtag">
-                    <span>hashtag</span>
-                    <div class="hashtag-icon">
-                        <i class="fas fa-times"></i>
-                    </div>
-                </div>
-                <div class="hashtag">
-                    <span>hashtag</span>
-                    <div class="hashtag-icon">
-                        <i class="fas fa-times"></i>
-                    </div>
-                </div>
+
             </div>
 
             <button class="filter-button"><span>Apply</span></button>
@@ -129,6 +114,26 @@
         </div>
     </div>
 </article>
+
+<article>
+    <div class="login-page">
+        <div class="form">
+            <form class="login-form">
+                <input id="login-user-name" type="text" placeholder="username"/>
+                <input type="password" placeholder="password"/>
+                <button>login</button>
+                <p class="message"> <a href="#">Glad to see you</a></p>
+            </form>
+        </div>
+    </div>
+</article>
+
+<div style="display: none;" class="hashtag">
+    <span>hashtag</span>
+    <div class="hashtag-icon">
+        <i class="fas fa-times"></i>
+    </div>
+</div>
 
 </body>
 </html>

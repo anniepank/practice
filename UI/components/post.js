@@ -24,5 +24,11 @@ window.postComponent = function (postConfig) {
             likeElement.innerText = postConfig.likes.length
         }
     }
+
+    likeElement.addEventListener('click', () => {
+        if (app.isLoggedIn) {
+
+        }
+    })
     return postElement
 }
