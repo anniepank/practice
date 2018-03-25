@@ -1,24 +1,25 @@
 function likePost(postId) {
-    if (!app.user) return;
+    if (!app.user) return
     let post = Oazis.getPostById(postId)
 
-    let hasMyLike = false;
+    let hasMyLike = false
 
     if (post.likes) {
         for (let item of post.likes) {
             if (item.nickname === app.user) {
-                hasMyLike = true;
-                break;
+                hasMyLike = true
+                break
             }
         }
         if (!hasMyLike) {
             post.likes.push({nickname: app.user})
-            return true;
+        } else {
+            post.likes = post.likes.filter(x => x.nickname !== app.user)
         }
-        return false;
+    } else {
+        Object.assign(post, {likes: [{nickname: app.user}]})
     }
-    Object.assign(post, {likes: [{nickname: app.user}]} )
-    return true;
+    return post.likes.length
 }
 
 
@@ -27,7 +28,7 @@ function removePost(post) {
 }
 
 window.postComponent = function (postConfig) {
-    if (postConfig.deleted) return;
+    if (postConfig.deleted) return
 
     let postElement = document.getElementById('postTemplate').cloneNode(true)
 
@@ -64,11 +65,14 @@ window.postComponent = function (postConfig) {
 
     postElement.querySelector('.fa-heart').addEventListener('click', () => {
         if (app.user) {
-            if (likePost(postConfig.id)) {
-                let likes = likeElement.innerText
-                likes++
-                likeElement.innerText = likes
+            let numberOfLikesBefore = postConfig.likes.length
+            let numberOfLikes = likePost(postConfig.id)
+
+            likeElement.innerText = numberOfLikes
+            if (numberOfLikes - numberOfLikesBefore > 0) {
                 postElement.querySelector('.fa-heart').style.color = 'red'
+            } else {
+                postElement.querySelector('.fa-heart').style.color = '#555'
             }
         }
     })

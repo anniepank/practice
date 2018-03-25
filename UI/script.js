@@ -52,7 +52,8 @@
             author: 'Ivan',
             photoLink: 'https://placeimg.com/300/300/animals/3?',
             hashtags: ['#esthetic',  '#art'],
-            deleted: false
+            deleted: false,
+            likes: [],
         },
         {
             id: '6',
@@ -73,6 +74,7 @@
             photoLink: 'https://placeimg.com/300/300/animals/3?',
             hashtags: ['#gothic',  '#nature'],
             deleted: false,
+            likes: [],
         },
 
         {
@@ -117,6 +119,7 @@
             photoLink: 'https://placeimg.com/300/300/animals/3?',
             hashtags: ['#doggy',  '#kitten'],
             deleted: false,
+            likes: [],
         },
         {
             id: '12',
@@ -125,7 +128,8 @@
             author: 'Ivan',
             photoLink: 'https://placeimg.com/300/300/animals/3?',
             hashtags: ['#esthetic',  '#art'],
-            deleted: false
+            deleted: false,
+            likes: [],
         },
         {
             id: '13',
