@@ -79,5 +79,10 @@ window.postComponent = function (postConfig) {
         postElement.onDeleted(postConfig)
 
     })
+
+    postElement.querySelector('.fa-pencil-alt').addEventListener('click', () => {
+        window.localStorage.postToEdit = JSON.stringify(postConfig)
+        router.navigate('editPost')
+    })
     return postElement
 }

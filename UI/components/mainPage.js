@@ -79,7 +79,7 @@ window.mainPageComponent = function () {
     }
 
     function filterPosts(filterConfig) {
-        posts = Oazis.getPosts(0, limit, filterConfig)
+        posts = Oazis.getPosts(0, 9, filterConfig)
         update()
     }
 
@@ -149,6 +149,7 @@ window.mainPageComponent = function () {
     })
 
     element.querySelector('#dateFrom').addEventListener('change', () => {
+        // TODO when date removed
         let value = new Date(element.querySelector('#dateFrom').value)
         filters.dateFrom = value
         filterPosts(filters)

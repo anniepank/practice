@@ -266,8 +266,8 @@
 
         editPost(id, changes) {
             if (!this.getPostById(id)) return;
-            if (changes.author !== null) changes.author = null;
-            if (changes.createdAt !== null) changes.creattAt = null;
+            if (changes.author !== null) delete changes.author
+            if (changes.createdAt !== null) delete changes.createdAt
             return Object.assign(this.getPostById(id), changes)
         }
 

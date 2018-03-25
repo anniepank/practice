@@ -8,6 +8,7 @@ class App {
         router.add('^$', () => mainPageComponent())
         router.add('login', () => loginPageComponent())
         router.add('newPost', () => newPostComponent())
+        router.add('editPost', () => editPostComponent())
         router.navigate()
         router.render('')
         router.listen()
