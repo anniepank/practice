@@ -1,3 +1,55 @@
+let image
+let link = ''
+
+function preventDefaults (e) {
+    e.preventDefault()
+    e.stopPropagation()
+}
+
+function handleFiles(files) {
+    files = [...files]
+    files.forEach(uploadFile)
+    files.forEach(previewFile)
+}
+
+function handleDrop(e) {
+    let data = e.dataTransfer
+    let files = data.files;
+    handleFiles(files)
+}
+
+
+function uploadFile(file) {
+    let url = '/upload'
+    let formData = new FormData()
+
+    image.file = file
+
+    formData.append('file', file)
+
+    fetch(url, {
+        method: 'POST',
+        body: formData
+    }).then((res) => {
+        res.text().then(text => {
+            link = '/images/' + text
+        })
+    })
+}
+
+function previewFile(file) {
+    let reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onloadend = function() {
+        let img = document.createElement('img')
+        img.height = 300
+        img.width = 300
+        img.src = reader.result
+        image.appendChild(img)
+    }
+}
+
+
 window.newPostComponent = function () {
     console.log('create post page')
     let newPostPage = document.getElementById('form-template').cloneNode(true)
@@ -25,12 +77,22 @@ window.newPostComponent = function () {
         }
     })
 
+    let dropArea = newPostPage.querySelector(".drop-area");
+    image = newPostPage.querySelector('.image');
+
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropArea.addEventListener(eventName, preventDefaults, false)
+        document.body.addEventListener(eventName, preventDefaults, false)
+    })
+
+    dropArea.addEventListener('drop', handleDrop, false)
+
     newPostPage.querySelector('.submit').addEventListener('click', () => {
         let post = {
             author: app.user,
             createdAt: new Date(),
             hashtags: hashtags,
-            photoLink: 'https://placeimg.com/300/300/animals/1',
+            photoLink: link,
             description: newPostPage.querySelector('textarea').value
         }
 

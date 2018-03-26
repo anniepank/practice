@@ -70,16 +70,14 @@ window.mainPageComponent = function () {
 
     }
 
-    function loadMore(numberOfPosts, filters) {
-        //TODO check this
-        limit = numberOfPosts
-        let additionalPosts = Oazis.getPosts(posts.length, numberOfPosts, filters);
+    async function loadMore(numberOfPosts, filters) {
+        let additionalPosts = await Oazis.getPosts(posts.length, numberOfPosts, filters);
         posts = posts.concat(additionalPosts)
         update()
     }
 
-    function filterPosts(filterConfig) {
-        posts = Oazis.getPosts(0, 9, filterConfig)
+    async function filterPosts(filterConfig) {
+        posts = await Oazis.getPosts(0, 9, filterConfig)
         update()
     }
 
@@ -114,8 +112,10 @@ window.mainPageComponent = function () {
 
     }
 
-    hints()
-    loadMore(9)
+    loadMore(9).then( () => {
+        hints()
+    })
+
 
     element.querySelector('#loadMore').addEventListener('click', () => {
         loadMore(9, filters)
@@ -150,14 +150,16 @@ window.mainPageComponent = function () {
 
     element.querySelector('#dateFrom').addEventListener('change', () => {
         // TODO when date removed
-        let value = new Date(element.querySelector('#dateFrom').value)
-        filters.dateFrom = value
+        let value = element.querySelector('#dateFrom').value
+        let date = value ? new Date(value) : null
+        filters.dateFrom = date
         filterPosts(filters)
     })
 
     element.querySelector('#dateTo').addEventListener('change', () => {
-        let value = new Date(element.querySelector('#dateTo').value)
-        filters.dateTo = value
+        let value = element.querySelector('#dateTo').value
+        let date = value ? new Date(value) : null
+        filters.dateTo = date
         filterPosts(filters)
     })
 
@@ -179,7 +181,6 @@ window.mainPageComponent = function () {
         reload,
         update,
         filterPosts,
-        likePost
     })
     return element;
 

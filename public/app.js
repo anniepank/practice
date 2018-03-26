@@ -1,7 +1,6 @@
 class App {
     constructor() {
         this.user = window.localStorage.login
-        this.isLoggedIn = false
     }
 
     init () {
@@ -12,13 +11,14 @@ class App {
         router.navigate()
         router.render('')
         router.listen()
+
+        //window.localStorage.posts = JSON.stringify(Oazis.getPosts())
     }
 
     logIn(nickname) {
         if (!this.user) {
             let user = Oazis.getUsers().find(x => x === nickname)
             if (user) {
-                this.isLoggedIn = true
                 this.user = nickname
                 window.localStorage.login = user
                 return true;
@@ -31,7 +31,6 @@ class App {
 
     logOut() {
         if (this.user) {
-            this.isLoggedIn = false
             this.user = null
             window.localStorage.login = ''
         }

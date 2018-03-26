@@ -1,28 +1,3 @@
-function likePost(postId) {
-    if (!app.user) return
-    let post = Oazis.getPostById(postId)
-
-    let hasMyLike = false
-
-    if (post.likes) {
-        for (let item of post.likes) {
-            if (item.nickname === app.user) {
-                hasMyLike = true
-                break
-            }
-        }
-        if (!hasMyLike) {
-            post.likes.push({nickname: app.user})
-        } else {
-            post.likes = post.likes.filter(x => x.nickname !== app.user)
-        }
-    } else {
-        Object.assign(post, {likes: [{nickname: app.user}]})
-    }
-    return post.likes.length
-}
-
-
 function removePost(post) {
     Oazis.removePost(post.id)
 }
@@ -36,7 +11,7 @@ window.postComponent = function (postConfig) {
 
     postElement.querySelector('.nickname').innerText = postConfig['author']
     postElement.querySelector('.date').innerText = postConfig['createdAt'].toDateString()
-
+    postElement.querySelector('img').src = postConfig.photoLink
     postElement.querySelector('.post-description').innerText = postConfig['description']
     postElement.querySelector('.post-hashtags').innerText = postConfig['hashtags']
 
@@ -63,10 +38,10 @@ window.postComponent = function (postConfig) {
         }
     }
 
-    postElement.querySelector('.fa-heart').addEventListener('click', () => {
+    postElement.querySelector('.like-button').addEventListener('click', () => {
         if (app.user) {
             let numberOfLikesBefore = postConfig.likes.length
-            let numberOfLikes = likePost(postConfig.id)
+            let numberOfLikes = Oazis.likePost(postConfig.id)
 
             likeElement.innerText = numberOfLikes
             if (numberOfLikes - numberOfLikesBefore > 0) {
@@ -77,14 +52,13 @@ window.postComponent = function (postConfig) {
         }
     })
 
-    postElement.querySelector('.fa-trash').addEventListener('click', () => {
-        //TODO if not logged in?
+    postElement.querySelector('.delete-button').addEventListener('click', () => {
         removePost(postConfig)
         postElement.onDeleted(postConfig)
 
     })
 
-    postElement.querySelector('.fa-pencil-alt').addEventListener('click', () => {
+    postElement.querySelector('.edit-button').addEventListener('click', () => {
         window.localStorage.postToEdit = JSON.stringify(postConfig)
         router.navigate('editPost')
     })

@@ -1,159 +1,4 @@
 (function () {
-    let posts = [
-
-        {
-            id: '1',
-            description: 'lol',
-            createdAt: new Date('2018-03-12'),
-            author: 'Misha',
-            photoLink: 'http://placeimg.com/300/300/animals/?2',
-            hashtags: ['#some',  '#hashtags'],
-            deleted: false,
-            likes: [ {nickname: 'Ivan'}],
-        },
-
-        {
-            id: '2',
-            description: 'kek',
-            createdAt: new Date('2018-01-28'),
-            author: 'anniepank',
-            photoLink: 'https://placeimg.com/300/300/animals/?1',
-            hashtags: ['#some',  '#hashtags'],
-            deleted: false,
-            likes: [{nickname: 'anniepank'}, {nickname: 'Ivan'}]
-        },
-
-        {
-            id: '3',
-            description: 'cat',
-            createdAt: new Date('2018-02-28'),
-            author: 'anniepank',
-            photoLink: 'https://placeimg.com/300/300/animals/?2',
-            hashtags: ['#some #hashtags'],
-            deleted: false,
-            likes: [{nickname: 'anniepank'}, {nickname: 'Ivan'}]
-        },
-
-
-        {
-            id: '4',
-            description: 'dog',
-            createdAt: new Date('2018-02-24'),
-            author: 'Ivan',
-            photoLink: 'https://placeimg.com/300/300/animals/3?',
-            hashtags: ['#doggy',  '#kitten'],
-            deleted: false,
-            likes: [{nickname: 'anniepank'}, {nickname: 'Ivan'}, {nickname: ''}]
-        },
-        {
-            id: '5',
-            description: 'dog',
-            createdAt: new Date('2018-02-24'),
-            author: 'Ivan',
-            photoLink: 'https://placeimg.com/300/300/animals/3?',
-            hashtags: ['#esthetic',  '#art'],
-            deleted: false,
-            likes: [],
-        },
-        {
-            id: '6',
-            description: 'dog',
-            createdAt: new Date('2018-02-24'),
-            author: 'Ivan',
-            photoLink: 'https://placeimg.com/300/300/animals/3?',
-            hashtags: ['#classic',  '#beauty'],
-            deleted: false,
-            likes: [{nickname: 'anniepank'}, {nickname: 'Ivan'}, {nickname: 'nikita'}]
-        },
-
-        {
-            id: '7',
-            description: 'dog',
-            createdAt: new Date('2018-02-24'),
-            author: 'Petya',
-            photoLink: 'https://placeimg.com/300/300/animals/3?',
-            hashtags: ['#gothic',  '#nature'],
-            deleted: false,
-            likes: [],
-        },
-
-        {
-            id: '8',
-            description: 'lol',
-            createdAt: new Date('2018-02-23'),
-            author: 'Misha',
-            photoLink: 'https://placeimg.com/300/300/animals',
-            hashtags: ['#some',  '#hashtags'],
-            deleted: false,
-            likes: [{nickname: 'anniepank'}, {nickname: 'Ivan'}]
-        },
-
-        {
-            id: '9',
-            description: 'kek',
-            createdAt: new Date('2018-01-28'),
-            author: 'anniepank',
-            photoLink: 'https://placeimg.com/300/300/animals/1?',
-            hashtags: ['#some',  '#hashtags'],
-            deleted: false,
-            likes: [{nickname: 'anniepank'}]
-        },
-
-        {
-            id: '10',
-            description: 'cat',
-            createdAt: new Date('2018-02-28'),
-            author: 'anniepank',
-            photoLink: 'https://placeimg.com/300/300/animals/2?',
-            hashtags: ['#some #hashtags'],
-            deleted: false,
-            likes: [{nickname: 'anniepank'}]
-
-        },
-
-        {
-            id: '11',
-            description: 'dog',
-            createdAt: new Date('2018-02-24'),
-            author: 'Ivan',
-            photoLink: 'https://placeimg.com/300/300/animals/3?',
-            hashtags: ['#doggy',  '#kitten'],
-            deleted: false,
-            likes: [],
-        },
-        {
-            id: '12',
-            description: 'dog',
-            createdAt: new Date('2018-02-24'),
-            author: 'Ivan',
-            photoLink: 'https://placeimg.com/300/300/animals/3?',
-            hashtags: ['#esthetic',  '#art'],
-            deleted: false,
-            likes: [],
-        },
-        {
-            id: '13',
-            description: 'dog',
-            createdAt: new Date('2018-02-24'),
-            author: 'Ivan',
-            photoLink: 'https://placeimg.com/300/300/animals/3?',
-            hashtags: ['#classic',  '#beauty'],
-            deleted: false,
-            likes: [{nickname: 'Misha'}]
-        },
-
-        {
-            id: '14',
-            description: 'dog',
-            createdAt: new Date('2018-02-24'),
-            author: 'Petya',
-            photoLink: 'https://placeimg.com/300/300/animals/3?',
-            hashtags: ['#gothic',  '#nature'],
-            deleted: false,
-            likes: []
-        },
-
-    ]
 
     let users = [
         'anniepank',
@@ -165,9 +10,22 @@
     ]
 
     class Oazis {
+        async load() {
+            if (!localStorage.posts) {
+                let resultFromFetch = await fetch('/data.json')
+                let data = await resultFromFetch.json()
+                this.posts = data
+            } else {
+                this.posts = JSON.parse(localStorage.posts)
+            }
+            for (let post of this.posts) {
+                post.createdAt = new Date(post.createdAt)
+            }
+        }
 
-        constructor(posts) {
-            this.posts = posts
+        constructor() {
+            this.promise = this.load()
+            //this.posts = JSON.parse(window.localStorage.posts)
             this.photoSchema = {
                 types: {
                     id: 'string',
@@ -216,7 +74,8 @@
             }
         }
 
-        getPosts(offset, limit, filterConfig) {
+        async getPosts(offset, limit, filterConfig) {
+            await this.promise
             let results = this.posts.filter(x => !x.deleted)
 
             results.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
@@ -264,7 +123,7 @@
             post.deleted = false
             this.validatePost(post)
             this.posts.push(post)
-
+            this.save()
             return post
         }
 
@@ -272,16 +131,19 @@
             if (!this.getPostById(id)) return;
             if (changes.author !== null) delete changes.author
             if (changes.createdAt !== null) delete changes.createdAt
-            return Object.assign(this.getPostById(id), changes)
+            let post = Object.assign(this.getPostById(id), changes)
+            this.save()
+            return post
         }
 
         removePost(id) {
             this.getPostById(id).deleted = true
+            this.save()
         }
 
         getAuthors() {
             let authors = new Set()
-            for (let post of posts) {
+            for (let post of this.posts) {
                 authors.add(post.author)
             }
 
@@ -290,7 +152,7 @@
 
         getHashtags() {
             let hashtags = new Set()
-            for (let post of posts) {
+            for (let post of this.posts) {
                 for (let i = 0; i < post.hashtags.length; i++) {
                     hashtags.add(post.hashtags[i])
                 }
@@ -302,7 +164,36 @@
         getUsers() {
             return this.users;
         }
+
+        likePost(postId) {
+            if (!app.user) return
+            let post = this.getPostById(postId)
+
+            let hasMyLike = false
+
+            if (post.likes) {
+                for (let item of post.likes) {
+                    if (item.nickname === app.user) {
+                        hasMyLike = true
+                        break
+                    }
+                }
+                if (!hasMyLike) {
+                    post.likes.push({nickname: app.user})
+                } else {
+                    post.likes = post.likes.filter(x => x.nickname !== app.user)
+                }
+            } else {
+                Object.assign(post, {likes: [{nickname: app.user}]})
+            }
+            this.save()
+            return post.likes.length
+        }
+
+        save() {
+            window.localStorage.posts = JSON.stringify(this.posts)
+        }
     }
 
-    window.Oazis = new Oazis(posts);
+    window.Oazis = new Oazis();
 })();

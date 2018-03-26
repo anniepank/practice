@@ -74,3 +74,7 @@
     display: flex;
     align-items: center;
 }
+
+.post img {
+    max-width: 100%;
+}
