@@ -2,6 +2,16 @@
     text-align:center;
 }
 
+.wrapper {
+    display: flex;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    justify-content: space-around;
+}
+
 #form-main{
     width:100%;
     float:left;
@@ -9,14 +19,11 @@
 }
 
 #form-div {
+    display: flex;
     background-color:white;
     padding: 35px 35px 50px;
-    width: 450px;
-    float: left;
-    left: 50%;
-    position: absolute;
     margin-top:30px;
-    margin-left: -260px;
+    overflow: auto;
 }
 
 .feedback-input {
@@ -85,5 +92,9 @@ textarea {
 
 .image {
     width: 300px;
-    height: 300px;
+    min-height: 300px;
+}
+
+.form-template {
+    overflow: auto;
 }

@@ -1,7 +1,7 @@
 const http = require('http')
 const fs = require('fs')
 const url = require('url')
-const multiparty = require('multiparty');
+const multiparty = require('multiparty')
 
 function onRequest(req, res) {
     console.log(req.url)
@@ -29,6 +29,11 @@ function onRequest(req, res) {
         return
     } else {
         filePath = 'public' + path
+    }
+
+    if (!filePath.split('.')[1]) {
+        res.writeHead(500)
+        res.end()
     }
 
     let extension = filePath.split('.')[1].toLowerCase()

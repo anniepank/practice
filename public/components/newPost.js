@@ -93,7 +93,8 @@ window.newPostComponent = function () {
             createdAt: new Date(),
             hashtags: hashtags,
             photoLink: link,
-            description: newPostPage.querySelector('textarea').value
+            description: newPostPage.querySelector('textarea').value,
+            likes: []
         }
 
         Oazis.addPost(post)

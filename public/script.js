@@ -6,7 +6,8 @@
         'valera',
         'misha',
         'nikita',
-        'natasha'
+        'natasha',
+        'djadjka'
     ]
 
     class Oazis {
@@ -119,7 +120,7 @@
         }
 
         addPost(post) {
-            post.id = "id"
+            post.id = Date.now().toString()
             post.deleted = false
             this.validatePost(post)
             this.posts.push(post)

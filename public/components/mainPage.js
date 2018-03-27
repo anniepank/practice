@@ -37,6 +37,7 @@ window.mainPageComponent = function () {
             postElement.onDeleted = () => {
                 postList.removeChild(postElement)
                 posts = posts.filter(x => x !== post)
+
                 loadMore(1)
             }
             postList.appendChild(postElement)
