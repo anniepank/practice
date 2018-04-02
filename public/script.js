@@ -12,13 +12,10 @@
 
     class Oazis {
         async load() {
-            if (!localStorage.posts) {
-                let resultFromFetch = await fetch('/data.json')
-                let data = await resultFromFetch.json()
-                this.posts = data
-            } else {
-                this.posts = JSON.parse(localStorage.posts)
-            }
+            let resultFromFetch = await fetch('/data.json')
+            let data = await resultFromFetch.json()
+            this.posts = data
+
             for (let post of this.posts) {
                 post.createdAt = new Date(post.createdAt)
             }
@@ -26,7 +23,6 @@
 
         constructor() {
             this.promise = this.load()
-            //this.posts = JSON.parse(window.localStorage.posts)
             this.photoSchema = {
                 types: {
                     id: 'string',
@@ -95,9 +91,9 @@
                     for (let hashtag of filterConfig.hashtags) {
                         results = results.filter(x => {
                             for (let h of x.hashtags) {
-                                if (h === hashtag) return true;
+                                if (h === hashtag) return true
                             }
-                            return false;
+                            return false
                         })
                     }
                 }
@@ -129,7 +125,7 @@
         }
 
         editPost(id, changes) {
-            if (!this.getPostById(id)) return;
+            if (!this.getPostById(id)) return
             if (changes.author !== null) delete changes.author
             if (changes.createdAt !== null) delete changes.createdAt
             let post = Object.assign(this.getPostById(id), changes)
@@ -163,7 +159,7 @@
         }
 
         getUsers() {
-            return this.users;
+            return this.users
         }
 
         likePost(postId) {
@@ -191,10 +187,17 @@
             return post.likes.length
         }
 
-        save() {
-            window.localStorage.posts = JSON.stringify(this.posts)
+        async save() {
+            await fetch('/updatePosts', {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "POST",
+                body: JSON.stringify(this.posts)
+            })
         }
     }
 
-    window.Oazis = new Oazis();
-})();
+    window.Oazis = new Oazis()
+})()
