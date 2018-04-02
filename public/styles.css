@@ -74,11 +74,8 @@ body {
     margin: 0;
 }
 
-.navigation .links {
-}
 
-
-.navigation a {
+.page-header a {
     text-decoration: none;
     display: block;
     color: black;
@@ -173,6 +170,7 @@ input {
 
 
 .hashtag {
+    display: flex;
     margin: 20px;
     padding: 3px 10px 3px 10px;
     background-color: #ccc;
@@ -209,7 +207,7 @@ input {
 }
 
 
-#templatePost {
+#postTemplate, #mainPageTemplate {
     display: none;
 }
 

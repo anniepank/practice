@@ -1,5 +1,7 @@
+/*
 client.loadMore(9)
 client.update()
+
 
 let filters = {
     hashtags: [],
@@ -24,3 +26,18 @@ let hashtagInput = document.getElementById('hashtagInput').addEventListener('cha
         client.filterPosts(filters)
     }
 })
+
+let logoutButton = document.getElementById('logoutButton').addEventListener('click', () => {
+    client.logOut();
+})
+
+
+router.router.navigate()
+
+router.router
+    .add(/login/, function() {
+        console.log('login');
+    })
+
+router.router.listen()
+ */

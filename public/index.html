@@ -3,17 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="data:,">
     <link href="styles.css" rel="stylesheet">
-    <link href="post.css" rel="stylesheet">
+    <link href="components/post.css" rel="stylesheet">
+    <link href="components/newPost.css" rel="stylesheet">
+    <link href="components/login.css" rel="stylesheet">
     <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    <script defer src="components/post.js"></script>
+    <script defer src="components/newPost.js"></script>
+    <script defer src="components/editPost.js"></script>
+    <script defer src="components/mainPage.js"></script>
+    <script defer src="components/login.js"></script>
     <script defer src="script.js"></script>
-    <script defer src="test.js"></script>
+    <script defer src="router.js"></script>
+    <script defer src="app.js"></script>
     <script defer src="client-testing.js"></script>
+
     <link href="https://fonts.googleapis.com/css?family=Poiret+One|Source+Sans+Pro:300,400,700&amp;subset=cyrillic" rel="stylesheet">
     <title>Title</title>
 </head>
 <body>
-<div class="page">
+<div class="page" id="mainPageTemplate">
 
     <aside class="sidebar">
         <header class="page-header">
@@ -25,12 +35,12 @@
                 <div class="links">
                     <div><a href="#" id="user"></a></div>
                     <div><a href="#" id="logoutButton">Log out</a></div>
-                    <div><a href="#" id="loginButton">Log in</a></div>
+                    <div><a href="#login" id="loginButton">Log in</a></div>
                 </div>
 
             </div>
 
-            <button id="addPostButton">+</button>
+            <button id="addPostButton" href="#newPost"><a style="text-decoration: none;" href="#newPost">+</a></button>
 
         </header>
 
@@ -51,24 +61,7 @@
 
 
             <div class="hashtag-list">
-                <div class="hashtag">
-                    <span>hashtag</span>
-                    <div class="hashtag-icon">
-                        <i class="fas fa-times"></i>
-                    </div>
-                </div>
-                <div class="hashtag">
-                    <span>hashtag</span>
-                    <div class="hashtag-icon">
-                        <i class="fas fa-times"></i>
-                    </div>
-                </div>
-                <div class="hashtag">
-                    <span>hashtag</span>
-                    <div class="hashtag-icon">
-                        <i class="fas fa-times"></i>
-                    </div>
-                </div>
+
             </div>
 
             <button class="filter-button"><span>Apply</span></button>
@@ -94,7 +87,7 @@
 
 </div>
 
-<article id="templatePost" class="post">
+<article id="postTemplate" class="post">
     <div class="post-top">
         <div class="post-header">
             <div class="post-info">
@@ -102,10 +95,10 @@
                 <div class="date">Wed Feb 28 2018</div>
             </div>
             <div class="to-the-right">
-                <button class="post-button">
+                <button class="post-button delete-button">
                     <i class="fas fa-trash"></i>
                 </button>
-                <button class="post-button">
+                <button class="post-button edit-button">
                     <i class="fas fa-pencil-alt"></i>
                 </button>
             </div>
@@ -117,14 +110,73 @@
             <div class="post-description">cat</div>
             <div class="post-hashtags">#some #hashtags</div>
         </div>
-        <div class="to-the-right">
-            <button class="post-button">
+        <div class="likes-wrapper">
+            <button class="post-button like-button">
                 <i class="fas fa-heart"></i>
             </button>
             <div id="likes"></div>
         </div>
     </div>
 </article>
+
+<article>
+    <div class="login-page">
+        <div class="form">
+            <div class="login-form">
+                <input id="login-user-name" type="text" placeholder="username"/>
+                <input type="password" placeholder="password"/>
+                <button>login</button>
+                <p class="message"> <a href="#">Glad to see you</a></p>
+            </div>
+        </div>
+    </div>
+</article>
+
+<div style="display: none;" class="hashtag">
+    <span>hashtag</span>
+    <div class="hashtag-icon">
+        <i class="fas fa-times"></i>
+    </div>
+</div>
+
+<div id="form-template" style="display: none;" >
+    <div class="wrapper">
+    <div id="form-div">
+        <div>
+            <div class="drop-area">
+                <input type="file" id="fileElem" accept="image/*" onchange="handleFiles(this.photo)">
+                <div class="image"></div>
+            </div>
+            <div class="name">
+                <input name="name" readonly="readonly" type="text" class=" feedback-input" id="name" />
+            </div>
+
+            <div class="date">
+                <input name="date" type="text" class="feedback-input" id="date" readonly="readonly" />
+            </div>
+
+            <div class="hashtags">
+                <input id="createHashtagsInput" name="hashtags" list="createHashtags" type='text' placeholder='#hashtag'/>
+                <datalist id="createHashtags"></datalist>
+            </div>
+
+            <div class="hashtag-list">
+
+            </div>
+
+            <div class="description">
+                <textarea maxlength="300" name="description" class="feedback-input" id="description" placeholder="Description"></textarea>
+            </div>
+
+
+            <div class="submit">
+                <input type="submit" value="CREATE" id="button-blue"/>
+                <div class="ease"></div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
 
 </body>
 </html>
