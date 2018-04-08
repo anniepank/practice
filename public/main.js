@@ -32,6 +32,7 @@ class App {
     logOut() {
         if (this.user) {
             this.user = null
+
             window.localStorage.login = ''
         }
     }

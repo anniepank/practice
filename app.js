@@ -2,7 +2,21 @@ const http = require('http')
 const fs = require('fs')
 const url = require('url')
 const multiparty = require('multiparty')
+const express = require('express')
+const app = express()
+const router = require('./router.js')
+const bodyParser = require('body-parser')
 
+app.listen(3000, () => {
+    console.log('app started')
+})
+
+app.use(bodyParser.json())
+app.use('/', router)
+app.use(express.static(__dirname + '/public'))
+
+
+/*
 function onRequest(req, res) {
     console.log(req.url)
 
@@ -63,3 +77,4 @@ function onRequest(req, res) {
 }
 
 let server = http.createServer(onRequest).listen(3000)
+*/
