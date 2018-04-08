@@ -1,5 +1,7 @@
 function removePost(post) {
-    Oazis.removePost(post.id)
+    fetch('/removePhotoPost?id=' + post.id, {
+        method: 'DELETE'
+    })
 }
 
 window.postComponent = function (postConfig) {
@@ -10,7 +12,7 @@ window.postComponent = function (postConfig) {
     postElement.id = null
 
     postElement.querySelector('.nickname').innerText = postConfig['author']
-    postElement.querySelector('.date').innerText = postConfig['createdAt'].toDateString()
+    postElement.querySelector('.date').innerText = new Date(postConfig['createdAt']).toDateString()
     postElement.querySelector('img').src = postConfig.photoLink
     postElement.querySelector('.post-description').innerText = postConfig['description']
     postElement.querySelector('.post-hashtags').innerText = postConfig['hashtags']
@@ -38,10 +40,12 @@ window.postComponent = function (postConfig) {
         }
     }
 
-    postElement.querySelector('.like-button').addEventListener('click', () => {
+    postElement.querySelector('.like-button').addEventListener('click', async () => {
         if (app.user) {
             let numberOfLikesBefore = postConfig.likes.length
-            let numberOfLikes = Oazis.likePost(postConfig.id)
+            let numberOfLikes = await (await fetch('/likePost?id=' + postConfig.id + '&user=' + app.user, {
+                method: 'POST'
+            })).json()
 
             likeElement.innerText = numberOfLikes
             if (numberOfLikes - numberOfLikesBefore > 0) {

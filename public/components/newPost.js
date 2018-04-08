@@ -97,8 +97,15 @@ window.newPostComponent = function () {
             likes: []
         }
 
-        Oazis.addPost(post)
-        router.navigate('')
+        fetch('/addPhotoPost', {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'POST',
+            body: JSON.stringify(post)
+        }).then(() => {
+            router.navigate('')
+        })
     })
 
 
